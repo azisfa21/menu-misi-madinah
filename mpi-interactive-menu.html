@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI PAI - Kepemimpinan Nabi Muhammad SAW di Madinah</title>
+    
+    <!-- Google Fonts: Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900;1000&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        madinah: {
+                            green: '#047857',
+                            light: '#10b981',
+                            cream: '#fef3c7',
+                            gold: '#fbbf24',
+                            dark: '#064e3b',
+                            accent: '#0d9488'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* === KEYFRAMES MURNI DALAM CSS (JAMINAN BERJALAN DI SEMUA BROWSER) === */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.9); }
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.92) translateY(12px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes entrance {
+            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.4)); }
+            50% { filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.8)); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        }
+
+        @keyframes musicBounce {
+            0% { transform: scaleY(0.3); }
+            100% { transform: scaleY(1); }
+        }
+
+        /* === BASE STYLES === */
+        body {
+            background-color: #064e3b;
+            background-image: url('https://i.ibb.co.com/Tqcp9xy3/1791364041513.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        /* Overlay gelap semi-transparan agar tulisan sangat kontras dan jelas */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(
+                180deg, 
+                rgba(6, 78, 59, 0.35) 0%, 
+                rgba(6, 78, 59, 0.2) 40%, 
+                rgba(6, 78, 59, 0.4) 100%
+            );
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* === TOMBOL GAME 3D PREMIUM (DEFAULT SELALU TERLIHAT) === */
+        .game-btn {
+            position: relative;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            overflow: hidden;
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: flex;
+            cursor: pointer;
+        }
+        
+        .game-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent, 
+                rgba(255,255,255,0.2), 
+                transparent
+            );
+            transition: left 0.5s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .game-btn:hover::before {
+            left: 100%;
+        }
+        
+        .game-btn:active {
+            transform: translateY(6px) !important;
+            border-bottom-width: 0px !important;
+            margin-top: 6px;
+        }
+
+        .game-btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.08);
+        }
+
+        /* === GLASSMORPHISM PANEL PREMIUM === */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border: 2px solid rgba(255, 255, 255, 0.45);
+            box-shadow: 
+                0 25px 60px rgba(6, 78, 59, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* === BINTANG PARTIKEL EMAS === */
+        .star-particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star-particle::before {
+            content: '✦';
+            font-size: inherit;
+            color: inherit;
+            animation: sparkle var(--dur) ease-in-out infinite;
+            animation-delay: var(--delay);
+            display: block;
+        }
+
+        .circle-particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: float var(--dur) ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+
+        /* === PASTIKAN SEMUA ITEM MENU SELALU 100% TERLIHAT === */
+        .stagger-item {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* === ANIMASI ENTRANCE JIKA DIDUKUNG === */
+        .anim-pop {
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .anim-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .anim-glow {
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        .anim-pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* === BADGE SHIMMER === */
+        .badge-shimmer {
+            background: linear-gradient(
+                90deg, 
+                #fbbf24 0%, 
+                #fef08a 30%, 
+                #fbbf24 60%, 
+                #fef08a 85%, 
+                #fbbf24 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+
+        /* === VIEW TRANSITION === */
+        .view-panel {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .view-panel.exiting {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .view-panel.entering {
+            animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* === TUJUAN CARD HOVER === */
+        .tujuan-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tujuan-card:hover {
+            transform: translateX(6px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+        }
+
+        /* === RIBBON BADGE === */
+        .ribbon {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .ribbon span {
+            position: absolute;
+            display: block;
+            width: 85px;
+            padding: 3px 0;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            right: -22px;
+            top: 16px;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+        }
+
+        /* === MUSIC EQUALIZER WAVE === */
+        .music-wave {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 16px;
+        }
+
+        .music-wave span {
+            display: inline-block;
+            width: 3px;
+            background: #fcd34d;
+            border-radius: 2px;
+            animation: musicBounce 0.8s ease-in-out infinite alternate;
+        }
+
+        .music-wave span:nth-child(1) { height: 6px; animation-delay: 0s; }
+        .music-wave span:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+        .music-wave span:nth-child(3) { height: 8px; animation-delay: 0.3s; }
+        .music-wave span:nth-child(4) { height: 14px; animation-delay: 0.45s; }
+
+        .music-wave.paused span {
+            animation-play-state: paused;
+            transform: scaleY(0.3);
+        }
+
+        /* Hilangkan scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="relative flex items-center justify-center p-3 sm:p-5 min-h-screen text-gray-800">
+
+    <!-- Tombol Musik Latar (BGM ON/OFF) -->
+    <div class="fixed top-4 right-4 z-40">
+        <button id="btn-bgm-toggle" onclick="toggleBGM()" class="game-btn items-center space-x-2.5 px-3.5 sm:px-4 py-2 bg-emerald-800 hover:bg-emerald-700 text-white font-extrabold rounded-2xl border-b-4 border-emerald-950 shadow-xl backdrop-blur-md transition-all">
+            <div id="bgm-wave" class="music-wave paused">
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <span id="bgm-label" class="text-xs sm:text-sm font-black tracking-wide">MUSIK: OFF</span>
+        </button>
+    </div>
+
+    <!-- Audio Element untuk BGM (Mendukung File Lokal & Direct Link Google UserContent) -->
+    <audio id="bgm-audio" loop preload="auto">
+        <source src="./bgm-madinah.mp3" type="audio/mpeg">
+        <source src="./bgm-madinahv1.mp3" type="audio/mpeg">
+        <source src="https://drive.usercontent.google.com/download?id=14Hp3yX88Z93QejuslZnADyNCBIvHEYb5&export=download" type="audio/mpeg">
+        <source src="https://docs.google.com/uc?export=download&id=14Hp3yX88Z93QejuslZnADyNCBIvHEYb5" type="audio/mpeg">
+    </audio>
+
+    <!-- Efek Partikel Latar Belakang -->
+    <div id="particles-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- Karakter di sebelah kiri bawah menu -->
+    <div class="fixed bottom-3 left-3 sm:bottom-6 sm:left-6 z-20 pointer-events-none anim-float hidden md:block">
+        <img src="https://i.ibb.co.com/bMJsGpd9/1000436089-removebg-preview-1.png" alt="Maskot Kiri" class="w-32 sm:w-44 md:w-52 h-auto drop-shadow-2xl object-contain pointer-events-auto hover:scale-110 transition-transform duration-300 anim-glow">
+    </div>
+
+    <!-- Karakter di sebelah kanan bawah menu -->
+    <div class="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-20 pointer-events-none anim-float hidden md:block" style="animation-delay: 1.5s;">
+        <img src="https://i.ibb.co.com/45GkcSn/1000436090-removebg-preview-1.png" alt="Maskot Kanan" class="w-32 sm:w-44 md:w-52 h-auto drop-shadow-2xl object-contain pointer-events-auto hover:scale-110 transition-transform duration-300 anim-glow" style="animation-delay: 1s;">
+    </div>
+
+    <!-- KONTEN UTAMA -->
+    <main class="w-full max-w-3xl mx-auto z-10 flex flex-col items-center justify-center py-6">
+        
+        <!-- HEADER UTAMA (Logo / Banner Gambar) -->
+        <header class="text-center mb-5 sm:mb-7 anim-float flex justify-center items-center px-2 w-full">
+            <img src="https://i.ibb.co.com/PZcCZrv9/1000436443-removebg-preview.png" 
+                 alt="Tujuan Pembelajaran" 
+                 class="w-full max-w-md sm:max-w-lg md:max-w-2xl h-auto drop-shadow-2xl object-contain hover:scale-105 transition-transform duration-300 anim-glow"
+                 onerror="this.onerror=null; this.src='https://placehold.co/600x200/047857/ffffff?text=Misi+Cahaya+Madinah';">
+        </header>
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: MENU UTAMA (SELALU AKTIF PERTAMA) -->
+        <!-- ========================================== -->
+        <div id="view-main" class="view-panel w-full glass-panel rounded-3xl p-5 sm:p-8 anim-pop">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                
+                <!-- 1. TOMBOL TUJUAN PEMBELAJARAN -->
+                <button onclick="switchView('view-tujuan')" class="game-btn group items-center p-4 sm:p-5 bg-gradient-to-br from-sky-400 via-sky-500 to-blue-600 rounded-2xl border-b-8 border-sky-800 shadow-xl w-full text-left">
+                    <div class="bg-white/20 p-3.5 sm:p-4 rounded-xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <i class="fas fa-bullseye text-3xl sm:text-4xl text-white drop-shadow-md"></i>
+                    </div>
+                    <div class="ml-4 flex-grow">
+                        <h2 class="text-xl sm:text-2xl font-black text-white tracking-wide drop-shadow-sm">TUJUAN</h2>
+                        <p class="text-sky-100 text-xs sm:text-sm font-bold">Capaian Pembelajaran</p>
+                    </div>
+                    <div class="ml-2 text-white/70 group-hover:text-white group-hover:translate-x-1.5 transition-all duration-300">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </div>
+                </button>
+
+                <!-- 2. TOMBOL MATERI -->
+                <button onclick="switchView('view-materi')" class="game-btn group items-center p-4 sm:p-5 bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-800 rounded-2xl border-b-8 border-emerald-950 shadow-xl w-full text-left">
+                    <div class="bg-white/20 p-3.5 sm:p-4 rounded-xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <i class="fas fa-book-open text-3xl sm:text-4xl text-white drop-shadow-md"></i>
+                    </div>
+                    <div class="ml-4 flex-grow">
+                        <h2 class="text-xl sm:text-2xl font-black text-white tracking-wide drop-shadow-sm">MATERI</h2>
+                        <p class="text-emerald-100 text-xs sm:text-sm font-bold">Kisah & Keteladanan</p>
+                    </div>
+                    <div class="ml-2 text-white/70 group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-layer-group text-xl"></i>
+                    </div>
+                </button>
+
+                <!-- 3. TOMBOL KUIS -->
+                <button onclick="handleLink('LINK_KUIS')" class="game-btn group items-center p-4 sm:p-5 bg-gradient-to-br from-purple-500 via-purple-600 to-purple-800 rounded-2xl border-b-8 border-purple-950 shadow-xl w-full text-left relative">
+                    <div class="ribbon"><span>Seru!</span></div>
+                    <div class="bg-white/20 p-3.5 sm:p-4 rounded-xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 relative">
+                        <i class="fas fa-clipboard-question text-3xl sm:text-4xl text-white drop-shadow-md"></i>
+                        <i class="fas fa-star absolute -top-1 -right-1 text-yellow-300 text-xs animate-bounce"></i>
+                    </div>
+                    <div class="ml-4 flex-grow">
+                        <h2 class="text-xl sm:text-2xl font-black text-white tracking-wide drop-shadow-sm">KUIS</h2>
+                        <p class="text-purple-100 text-xs sm:text-sm font-bold">Uji Pengetahuanmu!</p>
+                    </div>
+                    <div class="ml-2 text-white/70 group-hover:text-white group-hover:translate-x-1.5 transition-all duration-300">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </div>
+                </button>
+
+                <!-- 4. TOMBOL GAME -->
+                <button onclick="switchView('view-game')" class="game-btn group items-center p-4 sm:p-5 bg-gradient-to-br from-amber-400 via-orange-500 to-orange-600 rounded-2xl border-b-8 border-orange-800 shadow-xl w-full text-left anim-pulse-glow relative">
+                    <div class="ribbon"><span>🔥 Hot!</span></div>
+                    <div class="bg-white/20 p-3.5 sm:p-4 rounded-xl flex-shrink-0 group-hover:rotate-12 transition-all duration-300">
+                        <i class="fas fa-gamepad text-3xl sm:text-4xl text-white drop-shadow-md"></i>
+                    </div>
+                    <div class="ml-4 flex-grow">
+                        <h2 class="text-xl sm:text-2xl font-black text-white tracking-wide drop-shadow-sm">GAME</h2>
+                        <p class="text-amber-100 text-xs sm:text-sm font-bold">Petualangan Seru!</p>
+                    </div>
+                    <div class="ml-2 text-white/70 group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-layer-group text-xl"></i>
+                    </div>
+                </button>
+
+            </div>
+
+            <!-- Badge Bawah -->
+            <div class="mt-6 text-center">
+                <div class="inline-flex items-center gap-2 px-5 py-2 bg-emerald-950/60 rounded-full border border-yellow-400/40 shadow-md">
+                    <i class="fas fa-mosque text-amber-400 text-sm"></i>
+                    <span class="badge-shimmer text-xs sm:text-sm font-black tracking-wider uppercase">MISI CAHAYA MADINAH</span>
+                    <i class="fas fa-star text-amber-400 text-xs"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: SUBMENU MATERI -->
+        <!-- ========================================== -->
+        <div id="view-materi" class="view-panel hidden w-full glass-panel rounded-3xl p-5 sm:p-8">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg shadow-emerald-500/40">
+                    <i class="fas fa-book-open text-2xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black text-yellow-300 uppercase tracking-wide drop-shadow-md" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.4);">PILIH MATERI</h2>
+                <p class="text-xs sm:text-sm text-emerald-100 font-bold mt-1">Baca, tonton, dan teladani kisah Rasulullah!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <!-- 1. Buku Materi -->
+                <button onclick="handleLink('LINK_MATERI')" class="game-btn flex-col items-center justify-center p-6 bg-gradient-to-br from-emerald-400 via-emerald-600 to-emerald-800 rounded-2xl border-b-8 border-emerald-950 text-center w-full group shadow-lg">
+                    <div class="bg-white/20 p-5 rounded-2xl mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-inner">
+                        <i class="fas fa-book-bookmark text-4xl text-white drop-shadow-md"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-black text-white drop-shadow-sm">Buku Materi</h3>
+                    <p class="text-emerald-100 text-xs sm:text-sm mt-1 font-semibold leading-relaxed">Baca kisah perjalanan & kepemimpinan Nabi</p>
+                </button>
+
+                <!-- 2. Video Animasi -->
+                <button onclick="handleLink('LINK_VIDEO')" class="game-btn flex-col items-center justify-center p-6 bg-gradient-to-br from-sky-400 via-blue-500 to-blue-700 rounded-2xl border-b-8 border-blue-900 text-center w-full group shadow-lg">
+                    <div class="bg-white/20 p-5 rounded-2xl mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-inner">
+                        <i class="fas fa-circle-play text-4xl text-yellow-300 drop-shadow-md"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-black text-white drop-shadow-sm">Video Animasi</h3>
+                    <p class="text-sky-100 text-xs sm:text-sm mt-1 font-semibold leading-relaxed">Tonton video pembelajaran interaktif yang seru</p>
+                </button>
+            </div>
+
+            <!-- Tombol Kembali -->
+            <button onclick="switchView('view-main')" class="game-btn items-center justify-center w-full py-3.5 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-extrabold rounded-xl border-b-4 border-slate-900 shadow-md">
+                <i class="fas fa-arrow-left mr-2"></i> KEMBALI KE MENU UTAMA
+            </button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: SUBMENU GAME -->
+        <!-- ========================================== -->
+        <div id="view-game" class="view-panel hidden w-full glass-panel rounded-3xl p-5 sm:p-8">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg shadow-orange-500/40">
+                    <i class="fas fa-gamepad text-2xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black text-yellow-300 uppercase tracking-wide drop-shadow-md" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.4);">MODE PERMAINAN</h2>
+                <p class="text-xs sm:text-sm text-amber-100 font-bold mt-1">Pilih tantangan petualangan belajarmu!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <!-- Game Single -->
+                <button onclick="handleLink('LINK_GAME_SINGLE')" class="game-btn flex-col items-center justify-center p-6 bg-gradient-to-br from-sky-400 via-blue-500 to-blue-700 rounded-2xl border-b-8 border-blue-900 text-center w-full group shadow-lg">
+                    <div class="bg-white/20 p-5 rounded-2xl mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-inner">
+                        <i class="fas fa-user-astronaut text-4xl text-white drop-shadow-md"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-black text-white drop-shadow-sm">GAME SINGLE</h3>
+                    <p class="text-sky-100 text-xs sm:text-sm mt-1 font-semibold leading-relaxed">Petualangan mandiri. Kumpulkan skor tertinggi!</p>
+                </button>
+
+                <!-- Game Battle -->
+                <button onclick="handleLink('LINK_GAME_BATTLE')" class="game-btn flex-col items-center justify-center p-6 bg-gradient-to-br from-rose-500 via-red-600 to-red-800 rounded-2xl border-b-8 border-red-950 text-center w-full group shadow-lg relative">
+                    <div class="ribbon"><span>⚔️ VS</span></div>
+                    <div class="bg-white/20 p-5 rounded-2xl mb-3 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-inner">
+                        <i class="fas fa-user-ninja text-4xl text-yellow-300 drop-shadow-md"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-black text-white drop-shadow-sm">GAME BATTLE</h3>
+                    <p class="text-red-100 text-xs sm:text-sm mt-1 font-semibold leading-relaxed">Tantang temanmu dalam mode duel pengetahuan!</p>
+                </button>
+            </div>
+
+            <!-- Tombol Kembali -->
+            <button onclick="switchView('view-main')" class="game-btn items-center justify-center w-full py-3.5 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-extrabold rounded-xl border-b-4 border-slate-900 shadow-md">
+                <i class="fas fa-arrow-left mr-2"></i> KEMBALI KE MENU UTAMA
+            </button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 4: SUBMENU TUJUAN PEMBELAJARAN -->
+        <!-- ========================================== -->
+        <div id="view-tujuan" class="view-panel hidden w-full glass-panel rounded-3xl p-5 sm:p-8">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-sky-400 to-sky-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg shadow-sky-500/40">
+                    <i class="fas fa-bullseye text-2xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black text-yellow-300 uppercase tracking-wide drop-shadow-md" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.4);">TUJUAN PEMBELAJARAN</h2>
+                <p class="text-xs sm:text-sm text-white font-bold mt-2 bg-emerald-950/70 py-1.5 px-4 rounded-full inline-block border border-white/20">Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
+            </div>
+            
+            <div class="flex flex-col gap-3 mb-6">
+                <!-- Poin 1 -->
+                <div class="tujuan-card flex items-center p-3.5 sm:p-4 bg-white/95 rounded-2xl border-2 border-sky-300 shadow-md">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sky-400 to-sky-600 text-white font-black text-lg sm:text-xl rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">1</div>
+                    <div class="ml-3 sm:ml-4 flex items-center">
+                        <i class="fas fa-mountain text-sky-600 text-xl sm:text-2xl mr-3 flex-shrink-0"></i>
+                        <p class="text-xs sm:text-sm font-bold text-gray-800 leading-snug">Menceritakan latar belakang hijrah Nabi Muhammad saw. ke Madinah.</p>
+                    </div>
+                </div>
+
+                <!-- Poin 2 -->
+                <div class="tujuan-card flex items-center p-3.5 sm:p-4 bg-white/95 rounded-2xl border-2 border-emerald-300 shadow-md">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 text-white font-black text-lg sm:text-xl rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">2</div>
+                    <div class="ml-3 sm:ml-4 flex items-center">
+                        <i class="fas fa-users-viewfinder text-emerald-700 text-xl sm:text-2xl mr-3 flex-shrink-0"></i>
+                        <p class="text-xs sm:text-sm font-bold text-gray-800 leading-snug">Menjelaskan kepemimpinan Nabi Muhammad saw. setelah hijrah ke Madinah.</p>
+                    </div>
+                </div>
+
+                <!-- Poin 3 -->
+                <div class="tujuan-card flex items-center p-3.5 sm:p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-md">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-400 to-amber-600 text-white font-black text-lg sm:text-xl rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">3</div>
+                    <div class="ml-3 sm:ml-4 flex items-center">
+                        <i class="fas fa-mosque text-amber-600 text-xl sm:text-2xl mr-3 flex-shrink-0"></i>
+                        <p class="text-xs sm:text-sm font-bold text-gray-800 leading-snug">Menjelaskan upaya Nabi Muhammad saw. dalam membangun masyarakat Madinah.</p>
+                    </div>
+                </div>
+
+                <!-- Poin 4 -->
+                <div class="tujuan-card flex items-center p-3.5 sm:p-4 bg-white/95 rounded-2xl border-2 border-purple-300 shadow-md">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-purple-700 text-white font-black text-lg sm:text-xl rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">4</div>
+                    <div class="ml-3 sm:ml-4 flex items-center">
+                        <i class="fas fa-shield-halved text-purple-600 text-xl sm:text-2xl mr-3 flex-shrink-0"></i>
+                        <p class="text-xs sm:text-sm font-bold text-gray-800 leading-snug">Mengidentifikasi sifat-sifat kepemimpinan Rasulullah saw.</p>
+                    </div>
+                </div>
+
+                <!-- Poin 5 -->
+                <div class="tujuan-card flex items-center p-3.5 sm:p-4 bg-white/95 rounded-2xl border-2 border-rose-300 shadow-md">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-rose-500 to-rose-700 text-white font-black text-lg sm:text-xl rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">5</div>
+                    <div class="ml-3 sm:ml-4 flex items-center">
+                        <i class="fas fa-book-quran text-rose-600 text-xl sm:text-2xl mr-3 flex-shrink-0"></i>
+                        <p class="text-xs sm:text-sm font-bold text-gray-800 leading-snug">Meneladani kepemimpinan Nabi Muhammad saw. dalam kehidupan sehari-hari.</p>
+                    </div>
+                </div>
+
+                <!-- Poin 6 -->
+                <div class="tujuan-card flex items-center p-3.5 sm:p-4 bg-white/95 rounded-2xl border-2 border-teal-300 shadow-md">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-500 to-teal-700 text-white font-black text-lg sm:text-xl rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">6</div>
+                    <div class="ml-3 sm:ml-4 flex items-center">
+                        <i class="fas fa-handshake text-teal-600 text-xl sm:text-2xl mr-3 flex-shrink-0"></i>
+                        <p class="text-xs sm:text-sm font-bold text-gray-800 leading-snug">Menunjukkan sikap jujur, amanah, adil, bertanggung jawab, dan gemar bermusyawarah.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Kembali -->
+            <button onclick="switchView('view-main')" class="game-btn items-center justify-center w-full py-3.5 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-extrabold rounded-xl border-b-4 border-slate-900 shadow-md">
+                <i class="fas fa-arrow-left mr-2"></i> KEMBALI KE MENU UTAMA
+            </button>
+        </div>
+
+    </main>
+
+    <!-- MODAL FRAME GAME -->
+    <div id="modal-game" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex flex-col p-2 sm:p-4">
+        <!-- Top Navigation Bar Game -->
+        <div class="flex items-center justify-between bg-slate-900 border border-slate-700 text-white px-4 py-2.5 rounded-2xl mb-2 shadow-lg">
+            <div class="flex items-center space-x-3">
+                <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="font-extrabold text-sm sm:text-base text-emerald-300">
+                    <i class="fas fa-gamepad mr-2 text-yellow-400"></i>Game: Misi Cahaya Madinah
+                </span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <a href="https://misi-cahaya-madinah-v3.netlify.app/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-xs font-bold rounded-lg transition-all flex items-center">
+                    <i class="fas fa-up-right-from-square mr-1.5"></i> Tab Baru
+                </a>
+                <button onclick="closeGameModal()" class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-500 text-xs font-black rounded-lg transition-all flex items-center shadow-md">
+                    <i class="fas fa-xmark mr-1.5 text-sm"></i> TUTUP
+                </button>
+            </div>
+        </div>
+        <!-- Frame Container -->
+        <div class="flex-grow w-full h-full bg-slate-900 rounded-2xl overflow-hidden border-2 border-emerald-500/40 shadow-2xl relative">
+            <div id="game-loading-spin" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-900 z-10 text-white">
+                <div class="w-14 h-14 border-4 border-emerald-400 border-t-transparent rounded-full animate-spin mb-4"></div>
+                <p class="text-sm font-bold text-emerald-200 animate-pulse">Memuat Game Misi Cahaya Madinah...</p>
+            </div>
+            <iframe id="game-iframe" src="" class="w-full h-full border-0 rounded-2xl" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen onload="document.getElementById('game-loading-spin').classList.add('hidden')"></iframe>
+        </div>
+    </div>
+
+    <!-- MODAL PERINGATAN (JIKA LINK BELUM DIATUR) -->
+    <div id="modal-alert" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl max-w-sm w-full shadow-2xl transform transition-all duration-300 scale-100 border border-amber-200/50" id="modal-content">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-amber-100 text-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-4 border-2 border-amber-300 shadow-md">
+                    <i class="fas fa-link-slash text-3xl"></i>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-black text-gray-800 mb-2">Tautan Belum Siap</h3>
+                <p class="text-sm text-gray-500 mb-6 font-semibold leading-relaxed" id="modal-message">Guru belum mengatur link untuk menu ini.</p>
+                <button onclick="closeModal()" class="game-btn justify-center w-full py-3.5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-extrabold rounded-xl border-b-4 border-emerald-800 hover:from-emerald-400 hover:to-emerald-500 transition-all shadow-md">
+                    <i class="fas fa-check mr-2"></i>SAYA MENGERTI
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * ==========================================
+         * KONFIGURASI TAUTAN PEMBELAJARAN (GURU)
+         * ==========================================
+         */
+        const CONFIG_LINKS = {
+            LINK_MATERI: "https://heyzine.com/flip-book/71d8a2a596.html",              
+            LINK_VIDEO: "https://drive.google.com/file/d/1eyxvbVCK2cmKXsjoUWlh77GwTzeeSOrM/view?usp=sharing",               
+            LINK_KUIS: "https://kuis-kelas5mapelpai.netlify.app/",                
+            LINK_GAME_SINGLE: "https://misi-cahaya-madinah-v3.netlify.app/",         
+            LINK_GAME_BATTLE: "https://gesture-battlev1.netlify.app"          
+        };
+
+        // === SISTEM MUSIK LATAR (BGM) ON / OFF ===
+        let bgmPlaying = false;
+        const bgmAudio = document.getElementById('bgm-audio');
+        const bgmWave = document.getElementById('bgm-wave');
+        const bgmLabel = document.getElementById('bgm-label');
+        const bgmBtn = document.getElementById('btn-bgm-toggle');
+
+        function toggleBGM() {
+            playSound('click');
+            if (!bgmAudio) return;
+
+            if (bgmPlaying) {
+                bgmAudio.pause();
+                bgmPlaying = false;
+                if (bgmWave) bgmWave.classList.add('paused');
+                if (bgmLabel) bgmLabel.innerText = 'MUSIK: OFF';
+                if (bgmBtn) {
+                    bgmBtn.classList.remove('bg-amber-600', 'border-amber-800');
+                    bgmBtn.classList.add('bg-emerald-800', 'border-emerald-950');
+                }
+            } else {
+                const playPromise = bgmAudio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        bgmPlaying = true;
+                        if (bgmWave) bgmWave.classList.remove('paused');
+                        if (bgmLabel) bgmLabel.innerText = 'MUSIK: ON';
+                        if (bgmBtn) {
+                            bgmBtn.classList.remove('bg-emerald-800', 'border-emerald-950');
+                            bgmBtn.classList.add('bg-amber-600', 'border-amber-800');
+                        }
+                    }).catch(() => {
+                        bgmAudio.src = 'https://drive.usercontent.google.com/download?id=14Hp3yX88Z93QejuslZnADyNCBIvHEYb5&export=download';
+                        bgmAudio.play().then(() => {
+                            bgmPlaying = true;
+                            if (bgmWave) bgmWave.classList.remove('paused');
+                            if (bgmLabel) bgmLabel.innerText = 'MUSIK: ON';
+                            if (bgmBtn) {
+                                bgmBtn.classList.remove('bg-emerald-800', 'border-emerald-950');
+                                bgmBtn.classList.add('bg-amber-600', 'border-amber-800');
+                            }
+                        }).catch(e => console.error('Audio play error:', e));
+                    });
+                }
+            }
+        }
+
+        // === WEB AUDIO API SOUND GENERATOR ===
+        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+        let audioCtx;
+
+        function initAudio() {
+            if (!audioCtx && AudioCtxClass) {
+                audioCtx = new AudioCtxClass();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playSound(type = 'click') {
+            try {
+                initAudio();
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                
+                if (type === 'click') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(500, now);
+                    osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'navigate') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.exponentialRampToValueAtTime(700, now + 0.12);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                } else if (type === 'alert') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(280, now);
+                    osc.frequency.setValueAtTime(180, now + 0.15);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                }
+            } catch (e) {
+                // Ignore audio error
+            }
+        }
+
+        // === LOGIKA NAVIGASI TAMPILAN ===
+        function switchView(targetViewId) {
+            playSound('navigate');
+            const panels = document.querySelectorAll('.view-panel');
+            
+            panels.forEach(panel => {
+                if (!panel.classList.contains('hidden')) {
+                    panel.classList.add('exiting');
+                    
+                    setTimeout(() => {
+                        panel.classList.add('hidden');
+                        panel.classList.remove('exiting');
+                        
+                        const target = document.getElementById(targetViewId);
+                        if (target) {
+                            target.classList.remove('hidden');
+                            target.classList.remove('anim-pop');
+                            void target.offsetWidth; 
+                            target.classList.add('anim-pop');
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    }, 200);
+                }
+            });
+        }
+
+        // === MODAL GAME FRAME INTERAKTIF ===
+        function openGameModal(url) {
+            playSound('click');
+            const modal = document.getElementById('modal-game');
+            const iframe = document.getElementById('game-iframe');
+            const loader = document.getElementById('game-loading-spin');
+            
+            if (loader) loader.classList.remove('hidden');
+            if (iframe) iframe.src = url;
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeGameModal() {
+            playSound('click');
+            const modal = document.getElementById('modal-game');
+            const iframe = document.getElementById('game-iframe');
+            
+            if (modal) modal.classList.add('hidden');
+            if (iframe) iframe.src = '';
+        }
+
+        // === LOGIKA EKSEKUSI LINK ===
+        function handleLink(linkKey) {
+            playSound('click');
+            const url = CONFIG_LINKS[linkKey];
+            
+            if (url && url.trim() !== "") {
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, 150);
+            } else {
+                showModal(linkKey);
+            }
+        }
+
+        // === MODAL PERINGATAN ===
+        function showModal(linkKey) {
+            playSound('alert');
+            const modal = document.getElementById('modal-alert');
+            const message = document.getElementById('modal-message');
+            
+            const nameMap = {
+                'LINK_MATERI': 'Modul Materi',
+                'LINK_VIDEO': 'Video Pembelajaran',
+                'LINK_KUIS': 'Kuis Interaktif',
+                'LINK_GAME_SINGLE': 'Game Single',
+                'LINK_GAME_BATTLE': 'Game Battle'
+            };
+
+            const title = nameMap[linkKey] || linkKey.replace('LINK_', '');
+            if (message) message.innerText = `Guru belum mengaitkan URL untuk menu "${title}".`;
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            playSound('click');
+            const modal = document.getElementById('modal-alert');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        // === EFEK PARTIKEL BINTANG EMAS & LINGKARAN ===
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            if (!container) return;
+            
+            // 12 Bintang emas
+            for (let i = 0; i < 12; i++) {
+                const star = document.createElement('div');
+                star.className = 'star-particle';
+                const size = Math.random() * 12 + 8;
+                star.style.fontSize = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.color = `rgba(251, 191, 36, ${Math.random() * 0.5 + 0.3})`;
+                star.style.setProperty('--dur', `${Math.random() * 3 + 2}s`);
+                star.style.setProperty('--delay', `${Math.random() * 3}s`);
+                container.appendChild(star);
+            }
+
+            // 10 Lingkaran halus
+            for (let i = 0; i < 10; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'circle-particle';
+                const size = Math.random() * 6 + 3;
+                circle.style.width = `${size}px`;
+                circle.style.height = `${size}px`;
+                circle.style.left = `${Math.random() * 100}%`;
+                circle.style.top = `${Math.random() * 100}%`;
+                circle.style.background = `rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1})`;
+                circle.style.setProperty('--dur', `${Math.random() * 4 + 3}s`);
+                circle.style.setProperty('--delay', `${Math.random() * 4}s`);
+                container.appendChild(circle);
+            }
+        }
+
+        // === INISIALISASI SAAT DOM READY ===
+        window.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
+
+        // === SHORTCUT KEYBOARD: ESC UNTUK TUTUP MODAL ===
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const gameModal = document.getElementById('modal-game');
+                const alertModal = document.getElementById('modal-alert');
+                
+                if (gameModal && !gameModal.classList.contains('hidden')) {
+                    closeGameModal();
+                } else if (alertModal && !alertModal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
